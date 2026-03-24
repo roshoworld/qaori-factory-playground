@@ -21,4 +21,6 @@ def divide(a, b):
     return a / b
 
 
-# power() function is missing — add it here
+def power(a, b):
+    """Return a raised to the power of b."""
+    return a ** b

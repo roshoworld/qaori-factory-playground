@@ -1,21 +1,41 @@
-# Calculator module
-deff add(a, b):
-    """Return the sum of a and b."""
-    return a + b
+# src/calculator.py
 
+def add(x, y):
+    """Adds two numbers and returns the sum."""
+    return x + y
 
-def subtract(a, b):
-    """Return a minus b."""
-    return a - b
+def subtract(x, y):
+    """Subtracts two numbers and returns the difference."""
+    return x - y
 
+def multiply(x, y):
+    """Multiplies two numbers and returns the product."""
+    return x * y
 
-def multiply(a, b):
-    """Return a times b."""
-    return a * b
+def divide(x, y):
+    """Divides two numbers and returns the quotient.
+    Handles division by zero.
+    """
+    if y == 0:
+        raise ValueError("Cannot divide by zero!")
+    return x / y
 
+def main():
+    """Demonstrates basic calculator operations."""
+    print("Simple Calculator Operations:")
+    
+    num1 = 10
+    num2 = 5
 
-def divide(a, b):
-    """Return a divided by b. Raises ValueError if b is zero."""
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
+    print(f"{num1} + {num2} = {add(num1, num2)}")
+    print(f"{num1} - {num2} = {subtract(num1, num2)}")
+    print(f"{num1} * {num2} = {multiply(num1, num2)}")
+    
+    try:
+        print(f"{num1} / {num2} = {divide(num1, num2)}")
+        print(f"{num1} / 0 = {divide(num1, 0)}") # This will raise an error
+    except ValueError as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    main()

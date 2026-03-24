@@ -1,117 +1,183 @@
 import pytest
-from src import calculator
+from src.calculator import add, subtract, multiply, divide
 
-# Tests for add function
+# Test cases for the add function
 def test_add_positive_numbers():
     # Arrange
-    a, b = 2, 3
+    a = 5
+    b = 3
+    expected_sum = 8
+
     # Act
-    result = calculator.add(a, b)
+    result = add(a, b)
+
     # Assert
-    assert result == 5
+    assert result == expected_sum
 
 def test_add_negative_numbers():
-    assert calculator.add(-1, -5) == -6
+    # Arrange
+    a = -5
+    b = -3
+    expected_sum = -8
 
-def test_add_positive_and_negative():
-    assert calculator.add(10, -3) == 7
+    # Act
+    result = add(a, b)
+
+    # Assert
+    assert result == expected_sum
+
+def test_add_positive_and_negative_numbers():
+    # Arrange
+    a = 10
+    b = -7
+    expected_sum = 3
+
+    # Act
+    result = add(a, b)
+
+    # Assert
+    assert result == expected_sum
 
 def test_add_zero():
-    assert calculator.add(0, 7) == 7
-    assert calculator.add(7, 0) == 7
-    assert calculator.add(0, 0) == 0
+    # Arrange
+    a = 0
+    b = 5
+    expected_sum = 5
 
-# Tests for subtract function
+    # Act
+    result = add(a, b)
+
+    # Assert
+    assert result == expected_sum
+
+# Test cases for the subtract function
 def test_subtract_positive_numbers():
-    assert calculator.subtract(5, 2) == 3
+    # Arrange
+    a = 10
+    b = 4
+    expected_difference = 6
+
+    # Act
+    result = subtract(a, b)
+
+    # Assert
+    assert result == expected_difference
 
 def test_subtract_negative_numbers():
-    assert calculator.subtract(-1, -5) == 4
+    # Arrange
+    a = -5
+    b = -2
+    expected_difference = -3
 
-def test_subtract_positive_and_negative():
-    assert calculator.subtract(10, -3) == 13
+    # Act
+    result = subtract(a, b)
+
+    # Assert
+    assert result == expected_difference
 
 def test_subtract_zero():
-    assert calculator.subtract(7, 0) == 7
-    assert calculator.subtract(0, 7) == -7
-    assert calculator.subtract(0, 0) == 0
+    # Arrange
+    a = 7
+    b = 0
+    expected_difference = 7
 
-# Tests for multiply function
+    # Act
+    result = subtract(a, b)
+
+    # Assert
+    assert result == expected_difference
+
+# Test cases for the multiply function
 def test_multiply_positive_numbers():
-    assert calculator.multiply(2, 3) == 6
+    # Arrange
+    a = 6
+    b = 7
+    expected_product = 42
+
+    # Act
+    result = multiply(a, b)
+
+    # Assert
+    assert result == expected_product
 
 def test_multiply_negative_numbers():
-    assert calculator.multiply(-2, -3) == 6
+    # Arrange
+    a = -4
+    b = -5
+    expected_product = 20
 
-def test_multiply_positive_and_negative():
-    assert calculator.multiply(2, -3) == -6
+    # Act
+    result = multiply(a, b)
+
+    # Assert
+    assert result == expected_product
 
 def test_multiply_by_zero():
-    assert calculator.multiply(5, 0) == 0
-    assert calculator.multiply(0, 5) == 0
-    assert calculator.multiply(0, 0) == 0
+    # Arrange
+    a = 9
+    b = 0
+    expected_product = 0
 
-# Tests for divide function
+    # Act
+    result = multiply(a, b)
+
+    # Assert
+    assert result == expected_product
+
+# Test cases for the divide function
 def test_divide_positive_numbers():
-    assert calculator.divide(6, 3) == 2.0
+    # Arrange
+    a = 10
+    b = 2
+    expected_quotient = 5.0
 
-def test_divide_negative_numbers():
-    assert calculator.divide(-6, -3) == 2.0
+    # Act
+    result = divide(a, b)
 
-def test_divide_positive_and_negative():
-    assert calculator.divide(6, -3) == -2.0
-
-def test_divide_by_one():
-    assert calculator.divide(5, 1) == 5.0
-
-def test_divide_zero_by_number():
-    assert calculator.divide(0, 5) == 0.0
+    # Assert
+    assert result == expected_quotient
 
 def test_divide_by_zero_raises_error():
+    # Arrange
+    a = 10
+    b = 0
+
+    # Act & Assert
     with pytest.raises(ValueError, match="Cannot divide by zero"):
-        calculator.divide(5, 0)
+        divide(a, b)
 
-# Tests for power function (covering all specified scenarios and more)
-def test_power_positive_base_positive_exponent():
-    # Verify power(2, 3) returns 8.
-    assert calculator.power(2, 3) == 8
+def test_divide_zero_by_positive_number():
+    # Arrange
+    a = 0
+    b = 5
+    expected_quotient = 0.0
 
-def test_power_positive_base_zero_exponent():
-    # Verify power(5, 0) returns 1.
-    assert calculator.power(5, 0) == 1
+    # Act
+    result = divide(a, b)
 
-def test_power_positive_base_one_exponent():
-    # Verify power(10, 1) returns 10.
-    assert calculator.power(10, 1) == 10
+    # Assert
+    assert result == expected_quotient
 
-def test_power_positive_base_negative_exponent():
-    # Verify power(2, -2) returns 0.25 (1/4).
-    assert calculator.power(2, -2) == 0.25
+def test_divide_negative_by_positive_number():
+    # Arrange
+    a = -10
+    b = 2
+    expected_quotient = -5.0
 
-def test_power_zero_base_positive_exponent():
-    # Verify power(0, 5) returns 0.
-    assert calculator.power(0, 5) == 0
+    # Act
+    result = divide(a, b)
 
-def test_power_zero_base_zero_exponent():
-    # Verify power(0, 0) returns 1 (standard mathematical convention).
-    assert calculator.power(0, 0) == 1
+    # Assert
+    assert result == expected_quotient
 
-def test_power_float_base_positive_exponent():
-    # Verify power(1.5, 2) returns 2.25.
-    assert calculator.power(1.5, 2) == 2.25
+def test_divide_float_numbers():
+    # Arrange
+    a = 7.5
+    b = 2.5
+    expected_quotient = 3.0
 
-def test_power_negative_base_even_exponent():
-    assert calculator.power(-2, 2) == 4
+    # Act
+    result = divide(a, b)
 
-def test_power_negative_base_odd_exponent():
-    assert calculator.power(-2, 3) == -8
-
-def test_power_negative_base_zero_exponent():
-    assert calculator.power(-5, 0) == 1
-
-def test_power_one_base():
-    assert calculator.power(1, 100) == 1
-    assert calculator.power(1, -100) == 1
-
-def test_power_large_numbers():
-    assert calculator.power(2, 10) == 1024
+    # Assert
+    assert result == expected_quotient

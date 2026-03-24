@@ -15,7 +15,11 @@ def multiply(a, b):
 
 
 def divide(a, b):
-    """Return a divided by b."""
+    """Return a divided by b.
+
+    Raises:
+        ValueError: If the divisor b is zero.
+    """
     if b == 0:
-        return None  # BUG: should raise ValueError
+        raise ValueError("Cannot divide by zero")
     return a / b

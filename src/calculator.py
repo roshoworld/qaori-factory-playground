@@ -1,5 +1,5 @@
 # Calculator module
-deff add(a, b):
+def add(a, b):
     """Return the sum of a and b."""
     return a + b
 

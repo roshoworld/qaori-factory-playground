@@ -1,31 +1,52 @@
 # src/calculator.py
+#
+# This file provides basic arithmetic functions.
+# Its primary purpose in the context of the Qaori Alter Platform is to serve as a
+# standard Python file whose syntax is validated by the 'py_compile' tool
+# as part of IRON RULE M (Python Syntax Validation).
 
-def add(a, b):
-    """Adds two numbers and returns the sum."""
+def add(a: float, b: float) -> float:
+    """
+    Adds two numbers and returns the sum.
+    """
     return a + b
 
-def subtract(a, b):
-    """Subtracts the second number from the first and returns the difference."""
+def subtract(a: float, b: float) -> float:
+    """
+    Subtracts the second number from the first and returns the difference.
+    """
     return a - b
 
-def multiply(a, b):
-    """Multiplies two numbers and returns the product."""
+def multiply(a: float, b: float) -> float:
+    """
+    Multiplies two numbers and returns the product.
+    """
     return a * b
 
-def divide(a, b):
-    """Divides the first number by the second and returns the quotient.
-    Raises ValueError if the second number is zero.
+def divide(a: float, b: float) -> float:
+    """
+    Divides the first number by the second and returns the quotient.
+    Raises a ValueError if division by zero is attempted.
     """
     if b == 0:
-        raise ValueError("Cannot divide by zero")
+        raise ValueError("Cannot divide by zero.")
     return a / b
 
-def power(a, b):
-    """Raises the first number to the power of the second number."""
-    return a ** b
+if __name__ == "__main__":
+    print("Qaori Alter Platform - Simple Calculator Utility")
+    print("-------------------------------------------------")
 
-def modulo(a, b):
-    """Returns the remainder of the division of the first number by the second."""
-    if b == 0:
-        raise ValueError("Cannot perform modulo with zero divisor")
-    return a % b
+    num1 = 10.5
+    num2 = 2.5
+
+    print(f"Adding {num1} and {num2}: {add(num1, num2)}")
+    print(f"Subtracting {num2} from {num1}: {subtract(num1, num2)}")
+    print(f"Multiplying {num1} by {num2}: {multiply(num1, num2)}")
+
+    try:
+        print(f"Dividing {num1} by {num2}: {divide(num1, num2)}")
+        print(f"Dividing {num1} by 0: {divide(num1, 0)}") # This will raise an error
+    except ValueError as e:
+        print(f"Error during division: {e}")
+
+    print("\nSyntax validation check: This file should pass 'python -m py_compile'.")

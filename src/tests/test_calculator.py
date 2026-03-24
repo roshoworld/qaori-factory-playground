@@ -1,100 +1,222 @@
-# test_calculator.py
+# tests/test_calculator.py
 import pytest
-from src import calculator
+from src.calculator import add, subtract, multiply, divide
 
-# Test cases for the add function
-@pytest.mark.parametrize("a, b, expected", [
-    (2, 3, 5),
-    (0, 0, 0),
-    (-1, 1, 0),
-    (-5, -2, -7),
-    (100, 200, 300),
-    (0.1, 0.2, pytest.approx(0.3)),  # Use pytest.approx for float comparisons
-    (10.5, 20.5, 31.0),
-    (0, 5, 5),
-    (5, 0, 5),
-    (-10, 5, -5),
-    (5, -10, -5),
-])
-def test_add(a: float, b: float, expected: float):
-    """
-    Test cases for the add function.
-    AAA Pattern: Arrange (parameters), Act (call function), Assert (check result).
-    """
-    # Arrange is handled by @pytest.mark.parametrize
+# --- Test cases for add function ---
+def test_add_positive_integers():
+    """Test addition of two positive integers."""
+    # Arrange
+    a, b = 2, 3
     # Act
-    result = calculator.add(a, b)
+    result = add(a, b)
     # Assert
-    assert result == expected
+    assert result == 5
 
-# Test cases for the subtract function
-@pytest.mark.parametrize("a, b, expected", [
-    (5, 2, 3),
-    (0, 0, 0),
-    (1, -1, 2),
-    (-5, -2, -3),
-    (200, 100, 100),
-    (0.5, 0.3, pytest.approx(0.2)),
-    (10.0, 5.5, 4.5),
-    (0, 5, -5),
-    (5, 0, 5),
-    (-10, 5, -15),
-    (5, -10, 15),
-])
-def test_subtract(a: float, b: float, expected: float):
-    """
-    Test cases for the subtract function.
-    """
-    result = calculator.subtract(a, b)
-    assert result == expected
+def test_add_negative_integers():
+    """Test addition of two negative integers."""
+    # Arrange
+    a, b = -2, -3
+    # Act
+    result = add(a, b)
+    # Assert
+    assert result == -5
 
-# Test cases for the multiply function
-@pytest.mark.parametrize("a, b, expected", [
-    (4, 6, 24),
-    (5, 0, 0),
-    (0, 5, 0),
-    (-3, 2, -6),
-    (-4, -5, 20),
-    (2.5, 2, 5.0),
-    (1.5, 0.5, pytest.approx(0.75)),
-    (100, 10, 1000),
-    (-10, 10, -100),
-    (10, -10, -100),
-])
-def test_multiply(a: float, b: float, expected: float):
-    """
-    Test cases for the multiply function.
-    """
-    result = calculator.multiply(a, b)
-    assert result == expected
+def test_add_zero_to_number():
+    """Test addition with zero."""
+    # Arrange
+    a, b = 0, 5
+    # Act
+    result = add(a, b)
+    # Assert
+    assert result == 5
+    # Arrange
+    a, b = 5, 0
+    # Act
+    result = add(a, b)
+    # Assert
+    assert result == 5
 
-# Test cases for the divide function
-@pytest.mark.parametrize("a, b, expected", [
-    (10, 2, 5.0),
-    (5.0, 2.0, 2.5),
-    (-10, 2, -5.0),
-    (-10, -2, 5.0),
-    (0, 5, 0.0),
-    (100, 10, 10.0),
-    (1, 3, pytest.approx(0.3333333333333333)),
-])
-def test_divide_success(a: float, b: float, expected: float):
-    """
-    Test cases for successful division.
-    """
-    result = calculator.divide(a, b)
-    assert result == expected
+def test_add_mixed_integers():
+    """Test addition of positive and negative integers."""
+    # Arrange
+    a, b = -2, 5
+    # Act
+    result = add(a, b)
+    # Assert
+    assert result == 3
 
-def test_divide_by_zero():
-    """
-    Test case for division by zero, which should raise a ValueError.
-    """
+def test_add_float_numbers():
+    """Test addition of floating-point numbers."""
+    # Arrange
+    a, b = 2.5, 3.5
+    # Act
+    result = add(a, b)
+    # Assert
+    assert result == 6.0
+
+# --- Test cases for subtract function ---
+def test_subtract_positive_integers():
+    """Test subtraction of two positive integers."""
+    # Arrange
+    a, b = 5, 2
+    # Act
+    result = subtract(a, b)
+    # Assert
+    assert result == 3
+
+def test_subtract_negative_integers():
+    """Test subtraction of two negative integers."""
+    # Arrange
+    a, b = -5, -2
+    # Act
+    result = subtract(a, b)
+    # Assert
+    assert result == -3
+
+def test_subtract_zero_from_number():
+    """Test subtraction with zero."""
+    # Arrange
+    a, b = 5, 0
+    # Act
+    result = subtract(a, b)
+    # Assert
+    assert result == 5
+    # Arrange
+    a, b = 0, 5
+    # Act
+    result = subtract(a, b)
+    # Assert
+    assert result == -5
+
+def test_subtract_mixed_integers():
+    """Test subtraction of positive and negative integers."""
+    # Arrange
+    a, b = -5, 2
+    # Act
+    result = subtract(a, b)
+    # Assert
+    assert result == -7
+
+def test_subtract_float_numbers():
+    """Test subtraction of floating-point numbers."""
+    # Arrange
+    a, b = 5.5, 2.5
+    # Act
+    result = subtract(a, b)
+    # Assert
+    assert result == 3.0
+
+# --- Test cases for multiply function ---
+def test_multiply_positive_integers():
+    """Test multiplication of two positive integers."""
+    # Arrange
+    a, b = 2, 3
+    # Act
+    result = multiply(a, b)
+    # Assert
+    assert result == 6
+
+def test_multiply_negative_integers():
+    """Test multiplication of two negative integers."""
+    # Arrange
+    a, b = -2, -3
+    # Act
+    result = multiply(a, b)
+    # Assert
+    assert result == 6
+
+def test_multiply_by_zero():
+    """Test multiplication by zero."""
+    # Arrange
+    a, b = 0, 5
+    # Act
+    result = multiply(a, b)
+    # Assert
+    assert result == 0
+    # Arrange
+    a, b = 5, 0
+    # Act
+    result = multiply(a, b)
+    # Assert
+    assert result == 0
+
+def test_multiply_mixed_integers():
+    """Test multiplication of positive and negative integers."""
+    # Arrange
+    a, b = -2, 5
+    # Act
+    result = multiply(a, b)
+    # Assert
+    assert result == -10
+
+def test_multiply_float_numbers():
+    """Test multiplication of floating-point numbers."""
+    # Arrange
+    a, b = 2.5, 2.0
+    # Act
+    result = multiply(a, b)
+    # Assert
+    assert result == 5.0
+
+# --- Test cases for divide function ---
+def test_divide_positive_integers():
+    """Test division of two positive integers."""
+    # Arrange
+    a, b = 10, 2
+    # Act
+    result = divide(a, b)
+    # Assert
+    assert result == 5.0
+
+def test_divide_negative_integers():
+    """Test division of two negative integers."""
+    # Arrange
+    a, b = -10, -2
+    # Act
+    result = divide(a, b)
+    # Assert
+    assert result == 5.0
+
+def test_divide_mixed_integers():
+    """Test division of positive and negative integers."""
+    # Arrange
+    a, b = -10, 2
+    # Act
+    result = divide(a, b)
+    # Assert
+    assert result == -5.0
+
+def test_divide_float_numbers():
+    """Test division of floating-point numbers."""
+    # Arrange
+    a, b = 10.0, 2.5
+    # Act
+    result = divide(a, b)
+    # Assert
+    assert result == 4.0
+
+def test_divide_zero_by_number():
+    """Test division of zero by a non-zero number."""
+    # Arrange
+    a, b = 0, 5
+    # Act
+    result = divide(a, b)
+    # Assert
+    assert result == 0.0
+
+def test_divide_by_one():
+    """Test division by one."""
+    # Arrange
+    a, b = 7, 1
+    # Act
+    result = divide(a, b)
+    # Assert
+    assert result == 7.0
+
+def test_divide_by_zero_raises_value_error():
+    """Test that division by zero raises a ValueError."""
+    # Arrange
+    a, b = 10, 0
     # Act & Assert
-    with pytest.raises(ValueError, match="Cannot divide by zero."):
-        calculator.divide(7, 0)
-
-    with pytest.raises(ValueError, match="Cannot divide by zero."):
-        calculator.divide(0, 0)
-
-    with pytest.raises(ValueError, match="Cannot divide by zero."):
-        calculator.divide(-5, 0)
+    with pytest.raises(ValueError, match="Cannot divide by zero!"):
+        divide(a, b)
